@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using ExpenseTrackerNewAPI.Core.Dtos;
 using ExpenseTrackerNewAPI.Core.Entities;
 using ExpenseTrackerNewAPI.Core.Interfaces;
 
@@ -119,6 +120,25 @@ namespace ExpenseTrackerNewAPI.Application.Services
             using var hmac = new HMACSHA512(Convert.FromBase64String(storedSalt));
             var computedHash = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
             return computedHash == storedHash;
+        }
+
+        public async Task<UserResponseDto> GetUserByIdAsync(int userId)
+        {
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null)
+                throw new Exception("User not found");
+
+            return new UserResponseDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                MonthlySalary = user.MonthlySalary,
+                ProfilePicture = user.ProfilePicture,
+                Language = user.Language,
+                Theme = user.Theme,
+                Preferences = user.Preferences
+            };
         }
     }
 } 

@@ -26,58 +26,58 @@ namespace ExpenseTrackerNewAPI.API.Documentation
                 public static class Register
                 {
                     public const string Example = @"
-{
-    ""username"": ""string"",
-    ""email"": ""string"",
-    ""password"": ""string"",
-    ""monthlySalary"": ""decimal""
-}";
+                    {
+                        ""username"": ""string"",
+                        ""email"": ""string"",
+                        ""password"": ""string"",
+                        ""monthlySalary"": ""decimal""
+                    }";
                 }
 
                 public static class Login
                 {
                     public const string Example = @"
-{
-    ""email"": ""string"",
-    ""password"": ""string""
-}";
+                    {
+                        ""email"": ""string"",
+                        ""password"": ""string""
+                    }";
                 }
 
                 public static class ResetPassword
                 {
                     public const string Example = @"
-{
-    ""email"": ""string"",
-    ""newPassword"": ""string""
-}";
+                    {
+                        ""email"": ""string"",
+                        ""newPassword"": ""string""
+                    }";
                 }
 
                 public static class UpdateSalary
                 {
                     public const string Example = @"
-{
-    ""newSalary"": ""decimal""
-}";
+                    {
+                        ""newSalary"": ""decimal""
+                    }";
                 }
 
                 public static class UpdateProfile
                 {
                     public const string Example = @"
-{
-    ""profilePicture"": ""string"",
-    ""language"": ""string"",
-    ""theme"": ""string""
-}";
+                    {
+                        ""profilePicture"": ""string"",
+                        ""language"": ""string"",
+                        ""theme"": ""string""
+                    }";
                 }
 
                 public static class UpdatePreferences
                 {
                     public const string Example = @"
-{
-    ""itemsPerPage"": ""int"",
-    ""defaultCurrency"": ""string"",
-    ""notificationEnabled"": ""boolean""
-}";
+                    {
+                        ""itemsPerPage"": ""int"",
+                        ""defaultCurrency"": ""string"",
+                        ""notificationEnabled"": ""boolean""
+                    }";
                 }
             }
         }
@@ -94,17 +94,17 @@ namespace ExpenseTrackerNewAPI.API.Documentation
                 public static class Create
                 {
                     public const string Example = @"
-{
-    ""name"": ""string""
-}";
+                    {
+                        ""name"": ""string""
+                    }";
                 }
 
                 public static class Update
                 {
                     public const string Example = @"
-{
-    ""name"": ""string""
-}";
+                    {
+                        ""name"": ""string""
+                    }";
                 }
             }
         }
@@ -125,24 +125,24 @@ namespace ExpenseTrackerNewAPI.API.Documentation
                 {
                     public const string Example = @"
 {
-    ""name"": ""string"",
-    ""amount"": ""decimal"",
-    ""date"": ""datetime"",
-    ""categoryId"": ""int"",
-    ""description"": ""string""
-}";
+                        ""name"": ""string"",
+                        ""amount"": ""decimal"",
+                        ""date"": ""datetime"",
+                        ""categoryId"": ""int"",
+                        ""description"": ""string""
+                    }";
                 }
 
                 public static class Update
                 {
                     public const string Example = @"
 {
-    ""name"": ""string"",
-    ""amount"": ""decimal"",
-    ""date"": ""datetime"",
-    ""categoryId"": ""int"",
-    ""description"": ""string""
-}";
+                        ""name"": ""string"",
+                        ""amount"": ""decimal"",
+                        ""date"": ""datetime"",
+                        ""categoryId"": ""int"",
+                        ""description"": ""string""
+                    }";
                 }
             }
 
@@ -173,63 +173,63 @@ namespace ExpenseTrackerNewAPI.API.Documentation
         public static class FrontendExample
         {
             public const string Code = @"
-// API servis örneği
-import axios from 'axios';
+            // API servis örneği
+            import axios from 'axios';
 
-const API_URL = 'https://your-api-url.com/api';
+            const API_URL = 'https://your-api-url.com/api';
 
-const api = axios.create({
-    baseURL: API_URL,
-    headers: {
-        'Content-Type': 'application/json'
-    }
-});
+            const api = axios.create({
+                baseURL: API_URL,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
-// Token'ı header'a ekle
-api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-});
+            // Token'ı header'a ekle
+            api.interceptors.request.use((config) => {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    config.headers.Authorization = `Bearer ${token}`;
+                }
+                return config;
+            });
 
-// Auth servisi
-export const authService = {
-    login: async (email: string, password: string) => {
-        const response = await api.post('/auth/login', { email, password });
-        return response.data;
-    },
-    register: async (userData: {
-        username: string;
-        email: string;
-        password: string;
-        monthlySalary: number;
-    }) => {
-        const response = await api.post('/auth/register', userData);
-        return response.data;
-    }
-};
+            // Auth servisi
+            export const authService = {
+                login: async (email: string, password: string) => {
+                    const response = await api.post('/auth/login', { email, password });
+                    return response.data;
+                },
+                register: async (userData: {
+                    username: string;
+                    email: string;
+                    password: string;
+                    monthlySalary: number;
+                }) => {
+                    const response = await api.post('/auth/register', userData);
+                    return response.data;
+                }
+            };
 
-// Expense servisi
-export const expenseService = {
-    getExpenses: async (startDate?: Date, endDate?: Date) => {
-        const response = await api.get('/expense', {
-            params: { startDate, endDate }
-        });
-        return response.data;
-    },
-    createExpense: async (expenseData: {
-        name: string;
-        amount: number;
-        date: Date;
-        categoryId: number;
-        description: string;
-    }) => {
-        const response = await api.post('/expense', expenseData);
-        return response.data;
-    }
-};";
+            // Expense servisi
+            export const expenseService = {
+                getExpenses: async (startDate?: Date, endDate?: Date) => {
+                    const response = await api.get('/expense', {
+                        params: { startDate, endDate }
+                    });
+                    return response.data;
+                },
+                createExpense: async (expenseData: {
+                    name: string;
+                    amount: number;
+                    date: Date;
+                    categoryId: number;
+                    description: string;
+                }) => {
+                    const response = await api.post('/expense', expenseData);
+                    return response.data;
+                }
+            };";
         }
     }
 } 
